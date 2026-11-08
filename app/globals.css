@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* =========================================
+   ARCHIVA DESIGN TOKENS
+   ========================================= */
+@theme {
+  /* Palette */
+  --color-navy: #142B5B;
+  --color-royal: #2457A6;
+  --color-sky: #65A9E8;
+  --color-ice: #C5E4F6;
+  --color-white: #FFFFFF;
+
+  /* Neutral */
+  --color-ink: #0F1E3D;
+  --color-slate-soft: #5B6B85;
+  --color-line: #E4EAF2;
+  --color-surface: #F7FAFD;
+
+  /* Radius */
+  --radius-xl2: 1.25rem;
+
+  /* Font */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* =========================================
+   BASE
+   ========================================= */
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus ring konsisten */
+*:focus-visible {
+  outline: 2px solid var(--color-royal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar halus */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #C9D5E5;
+  border-radius: 8px;
+  border: 2px solid var(--color-surface);
+}
+::-webkit-scrollbar-thumb:hover { background: #A9BBD2; }
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-up { animation: fadeInUp 0.5s ease-out both; }
+.animate-fade    { animation: fadeIn 0.4s ease-out both; }
+.animate-float   { animation: float 6s ease-in-out infinite; }
+
+/* Gradient text util */
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-navy), var(--color-royal), var(--color-sky));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sidebar gradient (dipakai nanti Tahap 4) */
+.bg-sidebar-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--color-navy)   0%,
+    var(--color-royal) 35%,
+    var(--color-sky)   65%,
+    var(--color-ice)   85%,
+    var(--color-white) 100%
+  );
+}
