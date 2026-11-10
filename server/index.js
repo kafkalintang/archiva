@@ -44,3 +44,7 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`[SERVER] ARCHIVA Backend berjalan di http://localhost:${PORT}`);
 });
+
+// Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/notes', require('./routes/notes'));
