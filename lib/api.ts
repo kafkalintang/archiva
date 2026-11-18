@@ -1,12 +1,5 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-
-export class ApiError extends Error {
-  status: number;
-  constructor(message: string, status: number) {
-    super(message);
-    this.status = status;
-  }
-}
+// lib/api.ts
+export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000';
 
 export async function apiFetch<T>(
   path: string,
@@ -14,18 +7,18 @@ export async function apiFetch<T>(
 ): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
-    credentials: 'include',
+    credentials: 'include', // ← penting agar cookie ikut terkirim
     headers: {
       'Content-Type': 'application/json',
-      ...(options.headers || {}),
+      ...(options.headers ?? {}),
     },
+    cache: 'no-store',
   });
 
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
-    throw new ApiError(data.error || 'Request failed', res.status);
+    throw new Error(data?.message ?? 'Request failed');
   }
-
   return data as T;
 }
